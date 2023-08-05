@@ -11,10 +11,6 @@ class projectController extends Controller
     function project(){
         $data = project::all();
 
-        // foreach ($data as $item){
-        //     $item->short_description = substr($item->deskripsi, 0, 100) . '...';
-        // }
-
         return view('dashboard.project')->with('data', $data);
     }
 
@@ -28,14 +24,20 @@ class projectController extends Controller
 
     function storeProject(Request $request){
         $request->validate([
-            'judul' => 'required',
-            'gambar' => 'required|mimes:jpg,jpeg,png',
-            'deskripsi' => 'required',
+            'judul' => 'required|min:5',
+            'gambar' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+            'deskripsi' => 'required|min:5',
         ],[
-            'judul.required' => 'Judul tidak boleh kosong',
-            'gambar.required' => 'Foto tidak boleh kosong',
-            'gambar.mimes' => 'Format gambar tidak di perbolehkan',
-            'deskripsi.required' => 'Deskripsi wajib di isi',
+            'judul.required' => 'Judulfield is required',
+            'judul.min' => 'Judul field must contain at least 5 characters',
+            
+            'gambar.required' => 'The image field cannot be empty',
+            'gambar.img' => 'The file uploaded must be an image',
+            'gambar.mimes' => 'Only allow images with extensions jpg, png, and jpeg',
+            'gambar.max' => 'The maximum file size allowed is 2 MB',
+
+            'deskripsi.required' => 'Deskripsi field is required',
+            'deskripsi.min' => 'Deskripsi field must contain at least 5 characters',
         ]);
 
         $fileGambar = $request->file('gambar');
@@ -49,7 +51,7 @@ class projectController extends Controller
             'deskripsi' => $request->input('deskripsi')
         ];
         project::create($data);
-        return redirect('dashboard/project')->with('success', 'Deskripsi berhasl di tambahkan');
+        return redirect('dashboard/project')->with('success', 'The project has been successfully added');
     }
 
     // fungsi untuk edit
@@ -59,7 +61,7 @@ class projectController extends Controller
         // dd($data);
 
         if (!$data) {
-            return redirect('dashboard/project')->with('error', 'Data About tidak ditemukan.');
+            return redirect('dashboard/project')->with('error', 'Data not found');
         }
 
         return view('dashboard/editProject', compact('data'));
@@ -68,11 +70,13 @@ class projectController extends Controller
     // fungsi kirim hasil edit
     function updateProject(Request $request, $id){
         $request->validate([
-            'judul' => 'required',
-            'deskripsi' => 'required',
+            'judul' => 'required|min:5',
+            'deskripsi' => 'required|min:5',
         ],[
-            'judul.required' => 'Judul tidak boleh kosong',
-            'deskripsi.required' => 'Deskripsi wajib di isi',
+            'judul.required' => 'Judul field is required',
+            'judul.min' => 'Judul field must contain at least 5 characters',
+            'deskripsi.required' => 'Deskripsi field is required',
+            'deskripsi.min' => 'Deskripsi field must contain at least 5 characters',
         ]);
     
         $data = [
@@ -82,10 +86,12 @@ class projectController extends Controller
     
         if ($request->hasFile('gambar')) {
             $request->validate([
-                'gambar' => 'required|mimes:jpg,jpeg,png',
+                'gambar' => 'required|image|mimes:jpg,jpeg,png|max:2048',
             ],[
-                'gambar.required' => 'Foto tidak boleh kosong',
-                'gambar.mimes' => 'Format gambar tidak di perbolehkan',
+            'gambar.required' => 'The image field cannot be empty',
+            'gambar.img' => 'The file uploaded must be an image',
+            'gambar.mimes' => 'Only allow images with extensions jpg, png, and jpeg',
+            'gambar.max' => 'The maximum file size allowed is 2 MB',
             ]);
     
             $fileGambar = $request->file('gambar');
@@ -104,16 +110,26 @@ class projectController extends Controller
         }
     
         project::where('id', $id)->update($data);
-        return redirect('dashboard/project')->with('success', 'data berhasil di update');
+        return redirect('dashboard/project')->with('success', 'Data updated successfully');
     }
     
 
     function deleteProject($id){
-        $data = project::where('gambar', $id)->first();
-        File::delete(public_path('img') . '/' . $data->gambar);
+    $data = project::find($id);
 
-        project::where('gambar', $id)->delete();
-        return redirect('dashboard/project')->with('success', 'Data berhasil di hapus');
+    if (!$data) {
+        return redirect()->back()->with('error', 'Project not found.');
+    }
+
+    // Hapus file gambar jika ada
+    if ($data->gambar) {
+        File::delete(public_path('img') . '/' . $data->gambar);
+    }
+
+    // Hapus data project
+    $data->delete();
+
+    return redirect('dashboard/project')->with('success', 'Project successfully deleted');
     }
 
     

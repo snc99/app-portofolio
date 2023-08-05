@@ -1,5 +1,3 @@
-<!-- Page Footer Start -->
-<!--================================-->
 <footer class="page-footer">
     <div class="pd-t-4 pd-b-0 pd-x-20">
         <div class="tx-10 tx-uppercase">
@@ -8,14 +6,6 @@
         </div>
     </div>
 </footer>
-<!--/ Page Footer End -->
-<!--================================-->
-<!-- Footer Script -->
-<!--================================-->
-
-<!-- Footer Script -->
-<!--================================-->
-
 <script src="{{ asset('assets/admin') }}/assets/plugins/jquery/jquery.min.js"></script>
 <script src="{{ asset('assets/admin') }}/assets/plugins/jquery-ui/jquery-ui.js"></script>
 <script src="{{ asset('assets/admin') }}/assets/plugins/popper/popper.js"></script>
@@ -29,9 +19,11 @@
 <script src="{{ asset('assets/admin') }}/assets/js/highlight.min.js"></script>
 <script src="{{ asset('assets/admin') }}/assets/js/app.js"></script>
 <script src="{{ asset('assets/admin') }}/assets/js/custom.js"></script>
-<script src="{{ asset('assets/admin') }}/assets/plugins/sweetalert/bootstrap-sweetalert.js"></script>
+{{-- <script src="{{ asset('assets/admin') }}/assets/plugins/sweetalert/bootstrap-sweetalert.js"></script> --}}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 @include('component.sweetalert')
 

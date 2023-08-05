@@ -1,33 +1,15 @@
 <div class="page-header">
-    <!--================================-->
-    <!-- Page Header  Start -->
-    <!--================================-->
     <nav class="navbar navbar-expand-lg">
         <ul class="list-inline list-unstyled mg-r-20">
-            <!-- Mobile Toggle and Logo -->
             <li class="list-inline-item align-text-top"><a class="hidden-md hidden-lg" href="#"
                     id="sidebar-toggle-button"><i class="ion-navicon tx-20"></i></a></li>
-            <!-- PC Toggle and Logo -->
             <li class="list-inline-item align-text-top"><a class="hidden-xs hidden-sm" href="#"
                     id="collapsed-sidebar-toggle-button"><i class="ion-navicon tx-20"></i></a></li>
         </ul>
-        <!--================================-->
-        <!-- Mega Menu Start -->
-        <!--================================-->
         <div class="collapse navbar-collapse">
-
         </div>
-        <!--/ Mega Menu End-->
-        <!--/ Brand and Logo End -->
-        <!--================================-->
-        <!-- Header Right Start -->
-        <!--================================-->
         <div class="header-right pull-right">
             <ul class="list-inline justify-content-end">
-                <!--/ Messages Dropdown End -->
-                <!--================================-->
-                <!-- Profile Dropdown Start -->
-                <!--================================-->
                 <li class="list-inline-item dropdown">
                     <a href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="select-profile">Hi, John!</span>
@@ -52,9 +34,7 @@
                         </div>
                     </div>
                 </li>
-                <!-- Profile Dropdown End -->
             </ul>
         </div>
-        <!--/ Header Right End -->
     </nav>
 </div>

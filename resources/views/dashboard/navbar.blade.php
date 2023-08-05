@@ -2,14 +2,14 @@
     <div class="page-sidebar-menu">
         <ul class="accordion-menu">
             <li class="mg-20-force menu-others">Menu Dashboard</li>
-            <li class="{{ \Route::is('dashboard') ? 'open active' : '' }}">
-                <a href="{{ url('/dashboard') }}"><i data-feather="home"></i><span>Dashboard</span></a>
+            <li>
+                <a href="{{ '/dashboard' }}"><i data-feather="home"></i>
+                    <span>Dashboard</span></a>
             </li>
             <li>
                 <a href=""><i data-feather="folder"></i>
                     <span>Project</span><i class="accordion-icon fa fa-angle-left"></i></a>
                 <ul class="sub-menu" style="display: block;">
-                    <!-- Active Page -->
                     <li><a href="{{ '/dashboard/project' }}">View Project</a></li>
                     <li><a href="{{ '/dashboard/createProject' }}">Create Project</a></li>
                 </ul>
@@ -18,7 +18,6 @@
                 <a href=""><i data-feather="grid"></i>
                     <span>About</span><i class="accordion-icon fa fa-angle-left"></i></a>
                 <ul class="sub-menu" style="display: block;">
-                    <!-- Active Page -->
                     <li><a href="{{ '/dashboard/about' }}">View About</a></li>
                     <li><a href="{{ '/dashboard/createAbout' }}">Create About</a></li>
                 </ul>

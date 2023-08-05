@@ -59,7 +59,7 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" name="submit"
-                                                        class="btn btn-sm btn-label-delete"
+                                                        class="btn btn-sm btn-label-delete delete-about"
                                                         data-id="{{ $data->id }}">Delete</button>
                                                 </form>
                                             @else

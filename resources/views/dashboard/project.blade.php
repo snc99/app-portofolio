@@ -43,11 +43,22 @@
                                                 </p>
                                                 <a href="{{ url('dashboard/project/' . $item->id . '/edit') }}"
                                                     class="btn btn-sm btn-label-success">Edit</a>
-                                                <form onsubmit="return confirm('yakin mau hapus?')" class="d-inline"
+                                                {{-- <form onsubmit="return confirm('yakin mau hapus?')" class="d-inline"
                                                     action="{{ '/dashboard/project/' . $item->gambar }}" method="post">
                                                     @csrf
                                                     @method('DELETE') <button type="submit"
-                                                        class="btn btn-sm btn-label-delete">Delete</button>
+                                                        class="btn btn-sm btn-label-delete">Delete</button> --}}
+
+                                                <form method="post"
+                                                    action="{{ url('dashboard/project/' . $item->id) }}"
+                                                    class="d-inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" name="submit"
+                                                        class="btn btn-sm btn-label-delete delete-project"
+                                                        data-id="{{ $item->id }}"
+                                                        data-nama="{{ $item->judul }}">Delete</button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>

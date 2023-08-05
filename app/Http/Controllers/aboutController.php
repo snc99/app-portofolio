@@ -23,23 +23,24 @@ class aboutController extends Controller
 
     function storeAbout(Request $request){
         $request->validate([
-            'deskripsi' => 'required'
+            'deskripsi' => 'required|min:5'
         ],[
-            'deskripsi.required' => 'Deskripsi tidak boleh kosong!!!'
+            'deskripsi.required' => 'The description field is required',
+            'deskripsi.min' => 'The field must contain at least 5 characters'
         ]);
 
         $data = [
             'deskripsi' => $request->deskripsi
         ];
         about::create($data);
-        return redirect('dashboard/about')->with('success', 'Deskripsi berhasl di tambahkan');
+        return redirect('dashboard/about')->with('success', 'About has been successfully added');
     }
 
     function editAbout($id){
         $data = about::find($id);
 
         if (!$data) {
-            return redirect('dashboard/about')->with('error', 'Data About tidak ditemukan.');
+            return redirect('dashboard/about')->with('error', 'Data About not found');
         }
 
         return view('dashboard.viewEditAbout', compact('data'));
@@ -47,9 +48,10 @@ class aboutController extends Controller
 
     function updateAbout($id, Request $request){
         $request->validate([
-            'deskripsi' => 'required'
+            'deskripsi' => 'required|min:5'
         ],[
-            'deskripsi.required' => 'Deskripsi tidak boleh kosong'
+            'deskripsi.required' => 'The description field is required',
+            'deskripsi.min' => 'The field must contain at least 5 characters'
         ]);
         
         $data = about::find($id);
@@ -58,13 +60,13 @@ class aboutController extends Controller
 
 
         if (!$data->isDirty()) {
-            return redirect('dashboard/about')->with('warning', 'Data tidak ada yang diupdate.');
+            return redirect('dashboard/about')->with('warning', 'No data has been updated');
         }
 
         if ($data->save()) {
-            return redirect('dashboard/about')->with('success', 'Deskripsi berhasil diupdate.');
+            return redirect('dashboard/about')->with('success', 'About has been successfully updated');
         } else {
-            return redirect('dashboard/about')->with('error', 'Gagal mengupdate deskripsi.');
+            return redirect('dashboard/about')->with('error', 'Failed to update About');
         }
     }
 
@@ -73,9 +75,9 @@ class aboutController extends Controller
 
         if ($data) {
             $data->delete();
-            return redirect('dashboard/about')->with('success', 'Deskripsi berhasil dihapus');
+            return redirect('dashboard/about')->with('success', 'About successfully deleted');
         } else {
-            return redirect('dashboard/about')->with('error', 'Deskripsi tidak ditemukan');
+            return redirect('dashboard/about')->with('error', 'About not found');
         }
     }
 
