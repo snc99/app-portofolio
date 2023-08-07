@@ -10435,6 +10435,45 @@ a.text-dark:focus {
     }
 }
 
+.skill-container {
+    display: flex; /* Tampilkan gambar secara horizontal */
+    gap: 20px; /* Atur spasi antara gambar-gambar */
+    justify-content: center;
+}
+
+.skill-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    transition: transform 0.3s, filter 0.3s, box-shadow 0.3s; /* Animasi perubahan ukuran, warna, dan shadow */
+}
+
+.skill-icon {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    filter: grayscale(100%); /* Menjadikan gambar abu-abu secara default */
+    border: 2px solid transparent; /* Garis tepi */
+    border-radius: 50%; /* Agar gambar berbentuk lingkaran */
+}
+
+.skill-item:hover .skill-icon {
+    filter: grayscale(
+        0%
+    ); /* Mengembalikan warna asli saat kursor mengarah ke gambar */
+    transform: scale(1.1); /* Efek membesar sedikit pada foto saat hover */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Efek shadow */
+    border-color: #343a40; /* Warna garis tepi ketika hover */
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    /* Saat lebar layar kurang dari 768px (ukuran mobile) */
+    .skill-container {
+        justify-content: center; /* Tengahkan gambar-gambar */
+    }
+}
+
 .divider-custom {
     margin: 1.25rem 0 1.5rem;
     width: 100%;
@@ -10573,6 +10612,16 @@ a.text-dark:focus {
 }
 .masthead .masthead-avatar {
     width: 15rem;
+    animation: zoomEffect 2s ease;
+}
+
+@keyframes zoomEffect {
+    0% {
+        transform: scale(1); /* Ukuran normal */
+    }
+    20% {
+        transform: scale(1.4); /* Diperbesar 40% */
+    }
 }
 
 @media (min-width: 992px) {

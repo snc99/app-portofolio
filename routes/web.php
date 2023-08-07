@@ -5,6 +5,7 @@ use App\Http\Controllers\aboutController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\projectController;
+use App\Http\Controllers\skillController;
 use App\Models\project;
 use Illuminate\Support\Facades\Route;
 
@@ -49,6 +50,13 @@ route::middleware(['authMiddleware'])->group(function(){
     route::put('/dashboard/about/{id}', [aboutController::class, 'updateAbout'])->name('updateAbout');
     route::delete('/dashboard/about/{id}', [aboutController::class, 'deleteAbout']);
 
+    route::get('/dashboard/skill', [skillController::class, 'skill']);
+    route::get('/dashboard/createSkill', [skillController::class, 'createSkill']);
+    route::post('/dashboard/skill', [skillController::class, 'storeSkill']);
+    route::get('/dashboard/editSkill', [skillController::class, 'editSkill']);
+    route::get('/dashboard/skill/{id}/edit', [skillController::class, 'showEditSkill']);
+    route::put('/dashboard/skill/{id}', [skillController::class, 'updateSkill'])->name('updateSkill');
+    route::delete('/dashboard/skill/{id}', [skillController::class, 'deleteSkill']);
 });
 
 route::get('/home', function(){

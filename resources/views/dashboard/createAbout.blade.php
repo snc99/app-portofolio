@@ -1,46 +1,14 @@
 @include('dashboard.header')
 
 <body>
-    <!--================================-->
-    <!-- Page Container Start -->
-    <!--================================-->
     <div class="page-container">
-        <!--================================-->
-        <!-- Page Sidebar Start -->
-        <!--================================-->
         <div class="page-sidebar">
-            <div class="logo">
-                <a class="logo-img" href="/layouts/admin">
-                    <img class="desktop-logo" src="{{ asset('assets/admin') }}/assets/images/logo.png" alt="">
-                    <img class="small-logo" src="{{ asset('assets/admin') }}/assets/images/small-logo.png" alt="">
-                </a>
-                <i class="ion-ios-close-empty" id="sidebar-toggle-button-close"></i>
-            </div>
-            <!--================================-->
-            <!-- Sidebar Menu Start -->
-            <!--================================-->
             @include('dashboard.navbar')
-            <!--/ Sidebar Menu End -->
         </div>
-        <!--/ Page Sidebar End -->
-        <!--================================-->
-        <!-- Page Content Start -->
-        <!--================================-->
         <div class="page-content">
-            <!--================================-->
-            <!-- Page Header Start -->
-            <!--================================-->
             @include('dashboard.headBar')
-            <!--/ Page Header End -->
-            <!--================================-->
-            <!-- Page Inner Start -->
-            <!--================================-->
             <div class="page-inner">
-                <!-- Main Wrapper -->
                 <div id="main-wrapper">
-                    <!--================================-->
-                    <!-- Breadcrumb Start -->
-                    <!--================================-->
                     <div class="pageheader pd-t-25 pd-b-35">
                         <div class="pd-t-5 pd-b-5">
                             <h1 class="pd-0 mg-0 tx-20">Edit About</h1>
@@ -51,12 +19,6 @@
                             <span class="breadcrumb-item active">About</span>
                         </div>
                     </div>
-                    <!--/ Breadcrumb End -->
-                    <!--================================-->
-                    <!-- / Sales+Order+Revenue  End -->
-                    <!--================================-->
-                    <!-- Transaction History Start -->
-                    <!--================================-->
                     <form method="post" action="/dashboard/about">
                         @csrf
                         <div class="row row-xs clearfix">
@@ -90,23 +52,9 @@
                             </div>
                         </div>
                     </form>
-                    <!-- Transaction History End -->
                 </div>
-                <!--/ Main Wrapper End -->
             </div>
-            <!--/ Page Inner End -->
-            <!--================================-->
-
             @include('dashboard.footer')
         </div>
-        <!--/ Page Content End -->
     </div>
-    <!--/ Page Container End -->
-    <!--================================-->
-    <!-- Scroll To Top Start-->
-    <!--================================-->
     <a href="" data-click="scroll-top" class="btn-scroll-top fade"><i class="fa fa-arrow-up"></i></a>
-    <!--/ Scroll To Top End -->
-    <!--================================-->
-    <!-- Setting Sidebar Start -->
-    <!--================================-->

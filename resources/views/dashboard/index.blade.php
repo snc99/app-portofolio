@@ -3,19 +3,7 @@
 <body>
     <div class="page-container">
         <div class="page-sidebar">
-            <div class="logo">
-                <a class="logo-img" href="{{ 'dashboard.index' }}">
-                    <img class="desktop-logo" src="{{ asset('assets/admin') }}/assets/images/logo.png" alt="">
-                    <img class="small-logo" src="{{ asset('assets/admin') }}/assets/images/small-logo.png" alt="">
-                </a>
-                <i class="ion-ios-close-empty" id="sidebar-toggle-button-close"></i>
-            </div>
             @include('dashboard.navbar')
-            <div class="sidebar-footer">
-                <a class="pull-left" href="{{ '/logout' }}" data-toggle="tooltip" data-placement="top"
-                    data-original-title="Sing Out">
-                    <i data-feather="log-out" class="ht-15"></i></a>
-            </div>
         </div>
         <div class="page-content">
             @include('dashboard.headBar')
@@ -66,7 +54,7 @@
                                                     @foreach ($project as $item)
                                                         <tr>
                                                             <td class=" tx-normal tx-gray-600">
-                                                                <img src="{{ url('img') . '/' . $item->gambar }}"
+                                                                <img src="{{ asset('storage/' . $item->gambar) }}"
                                                                     alt="" class="img-fluid rounded-circle"
                                                                     style="max-width:30px; max-height:30px">
                                                             </td>
@@ -78,7 +66,11 @@
                                                         </tr>
                                                     @endforeach
                                                 @else
-                                                    <p>Data tidak di temukan</p>
+                                                    <tr>
+                                                        <td colspan="3" class="text-center"
+                                                            style="color: rgb(0, 113, 113)">Data tidak di temukan
+                                                        </td>
+                                                    </tr>
                                                 @endif
                                             </tbody>
                                         </table>
@@ -112,6 +104,71 @@
                                             <p class="text-center mt-3" style="color: red">Data Tidak Di
                                                 Temukan</p>
                                         @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-xl-12">
+                            <div class="card mg-b-20">
+                                <div class="card-header">
+                                    <h4 class="card-header-title">
+                                        Daftar Skill
+                                    </h4>
+                                    <div class="card-header-btn">
+                                        <a href="#" data-toggle="collapse" class="btn card-collapse"
+                                            data-target="#recentEarnings" aria-expanded="true"><i
+                                                class="ion-ios-arrow-down"></i></a>
+                                        <a href="#" data-toggle="refresh" class="btn card-refresh"><i
+                                                class="ion-android-refresh"></i></a>
+                                        <a href="#" data-toggle="expand" class="btn card-expand"><i
+                                                class="ion-android-expand"></i></a>
+                                        <a href="#" data-toggle="remove" class="btn card-remove"><i
+                                                class="ion-ios-trash-outline"></i></a>
+                                    </div>
+                                </div>
+                                <div class="card-body pd-0 collapse show" id="recentEarnings">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover mg-b-0">
+                                            <thead class="tx-dark tx-uppercase tx-10 tx-bold">
+                                                <tr>
+                                                    <th>Icon</th>
+                                                    <th>Judul</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if (count($skill) > 0)
+                                                    @foreach ($skill as $item)
+                                                        <tr>
+                                                            <td class=" tx-normal tx-gray-600">
+                                                                <img src="{{ asset('storage/' . $item->gambar) }}"
+                                                                    alt="" class="img-fluid rounded-circle"
+                                                                    style="max-width:30px; max-height:30px">
+                                                            </td>
+                                                            <td class="tx-medium tx-dark">{{ $item->nama }}</td>
+                                                            <td class="tx-medium tx-dark">
+                                                                <form method="post"
+                                                                    action="{{ url('dashboard/skill/' . $item->id) }}"
+                                                                    class="d-inline">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit" name="submit"
+                                                                        class="btn btn-sm btn-label-delete delete-skill"
+                                                                        data-id="{{ $item->id }}"
+                                                                        data-nama="{{ $item->nama }}">Delete</button>
+                                                                </form>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                @else
+                                                    <tr>
+                                                        <td colspan="3" class="text-center"
+                                                            style="color: rgb(0, 113, 113)">Data tidak di temukan
+                                                        </td>
+                                                    </tr>
+                                                @endif
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>

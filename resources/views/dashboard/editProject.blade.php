@@ -3,13 +3,6 @@
 <body>
     <div class="page-container">
         <div class="page-sidebar">
-            <div class="logo">
-                <a class="logo-img" href="/layouts/admin">
-                    <img class="desktop-logo" src="{{ asset('assets/admin') }}/assets/images/logo.png" alt="">
-                    <img class="small-logo" src="{{ asset('assets/admin') }}/assets/images/small-logo.png" alt="">
-                </a>
-                <i class="ion-ios-close-empty" id="sidebar-toggle-button-close"></i>
-            </div>
             @include('dashboard.navbar')
         </div>
         <div class="page-content">
