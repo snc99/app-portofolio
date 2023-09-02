@@ -12,20 +12,14 @@
             <ul class="list-inline justify-content-end">
                 <li class="list-inline-item dropdown">
                     <a href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="select-profile">Hi, John!</span>
-                        <img src="{{ asset('assets/admin') }}/assets/images/avatar/avatar1.png"
-                            class="img-fluid wd-35 ht-35 rounded-circle" alt="">
+                        <span class="select-profile">Hi, {{ auth()->user()->username }}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-profile shadow-2">
                         <div class="user-profile-area">
                             <div class="user-profile-heading">
-                                <div class="profile-thumbnail">
-                                    <img src="{{ asset('assets/admin') }}/assets/images/avatar/avatar1.png"
-                                        class="img-fluid wd-35 ht-35 rounded-circle" alt="">
-                                </div>
                                 <div class="profile-text">
-                                    <h6>John Deo</h6>
-                                    <span>email@example.com</span>
+                                    <h6>{{ auth()->user()->username }}</h6>
+                                    <span>User</span>
                                 </div>
                             </div>
                             <a href="{{ '/logout' }}" class="dropdown-item"><i class="icon-power"

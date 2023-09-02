@@ -11,7 +11,7 @@
                 <div id="main-wrapper">
                     <div class="pageheader pd-t-25 pd-b-35">
                         <div class="pd-t-5 pd-b-5">
-                            <h1 class="pd-0 mg-0 tx-20">Add Your Project</h1>
+                            <h1 class="pd-0 mg-0 tx-20">Add Your Skill</h1>
                         </div>
                         <div class="breadcrumb pd-0 mg-0">
                             <a class="breadcrumb-item" href=""><i class="icon ion-ios-home-outline">
@@ -28,16 +28,16 @@
                                     </h4>
                                 </div>
                                 <div class="card-body collapse show" id="collapse1">
-                                    <form method="post" action="/dashboard/project/" enctype="multipart/form-data">
+                                    <form method="post" action="/dashboard/skill/" enctype="multipart/form-data">
                                         @csrf
                                         <div class="form-layout form-layout-1">
                                             <div class="row mg-b-25">
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
-                                                        <label class="form-control-label active">Judul : <span
+                                                        <label class="form-control-label active">Nama Skill : <span
                                                                 class="tx-danger">*</span></label>
-                                                        <input class="form-control" type="text" name="judul"
-                                                            placeholder="Input judul">
+                                                        <input class="form-control" type="text" name="nama"
+                                                            placeholder="Input nama skill">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
@@ -53,17 +53,10 @@
                                                         </span>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-12">
-                                                    <div class="form-group">
-                                                        <label class="form-control-label active">Deskripsi : <span
-                                                                class="tx-danger">*</span></label>
-                                                        <textarea rows="3" class="form-control" placeholder="Input your description" name="deskripsi"></textarea>
-                                                    </div>
-                                                </div>
                                             </div>
                                             <!-- row -->
                                             <input class="btn btn-custom-primary" type="submit" name="submit"></input>
-                                            <a href="/dashboard/project" class="btn btn-secondary">Cancel</a>
+                                            <a href="/dashboard/skill" class="btn btn-secondary">Cancel</a>
                                         </div>
                                     </form>
                                 </div>

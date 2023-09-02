@@ -1,8 +1,6 @@
-<!-- Footer-->
 <footer class="footer text-center" id="contact">
     <div class="container">
         <div class="row">
-            <!-- Footer Location-->
             <div class="col-lg-4 mb-5 mb-lg-0">
                 <h4 class="text-uppercase mb-4">Location</h4>
                 <p class="lead mb-0">
@@ -13,7 +11,6 @@
                         Mustika Jaya, Bekasi</a>
                 </p>
             </div>
-            <!-- Footer Social Icons-->
             <div class="col-lg-4 mb-5 mb-lg-0">
                 <h4 class="text-uppercase mb-4">Find Me</h4>
                 <a class="fb-ic mr-3" role="button" href="https://m.facebook.com/irvan.sandi.754?ref=bookmarks"><i
@@ -31,7 +28,13 @@
                     085174133774
                 </p>
             </div>
-            <!-- Footer About Text-->
         </div>
     </div>
 </footer>
+<div class="copyright py-4 text-center text-white">
+    <div class="container"><small>Copyright © Irvan Sandy 2020</small></div>
+</div>
+<div class="scroll-to-top d-lg-none position-fixed">
+    <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top"><i
+            class="fa fa-chevron-up"></i></a>
+</div>

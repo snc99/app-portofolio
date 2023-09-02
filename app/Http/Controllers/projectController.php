@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\project;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class projectController extends Controller
 {
@@ -28,7 +29,7 @@ class projectController extends Controller
             'gambar' => 'required|image|mimes:jpg,jpeg,png|max:2048',
             'deskripsi' => 'required|min:5',
         ],[
-            'judul.required' => 'Judulfield is required',
+            'judul.required' => 'Judul field is required',
             'judul.min' => 'Judul field must contain at least 5 characters',
             
             'gambar.required' => 'The image field cannot be empty',
@@ -40,25 +41,26 @@ class projectController extends Controller
             'deskripsi.min' => 'Deskripsi field must contain at least 5 characters',
         ]);
 
-        $fileGambar = $request->file('gambar');
-        $getExtension = $fileGambar->extension();
-        $renameGambar = date('ymdhis') . '.' . $getExtension;
-        $fileGambar->move(public_path('img'), $renameGambar);
+        // $fileGambar = $request->file('gambar');
+        // $getExtension = $fileGambar->extension();
+        // $renameGambar = date('ymdhis') . '.' . $getExtension;
+        // $fileGambar->move(public_path('img'), $renameGambar);
+
+        if ($request->file('gambar')) {
+            $validateData['gambar'] = $request->file('gambar')->store('img');
+        }
 
         $data = [
             'judul' => $request->input('judul'),
-            'gambar' => $renameGambar,
+            'gambar' => $validateData['gambar'],
             'deskripsi' => $request->input('deskripsi')
         ];
         project::create($data);
         return redirect('dashboard/project')->with('success', 'The project has been successfully added');
     }
 
-    // fungsi untuk edit
     function showEditProject($id){
         $data = project::find($id);
-
-        // dd($data);
 
         if (!$data) {
             return redirect('dashboard/project')->with('error', 'Data not found');
@@ -73,7 +75,7 @@ class projectController extends Controller
             'judul' => 'required|min:5',
             'deskripsi' => 'required|min:5',
         ],[
-            'judul.required' => 'Judul field is required',
+            'judul.required' => 'Field judul  is required',
             'judul.min' => 'Judul field must contain at least 5 characters',
             'deskripsi.required' => 'Deskripsi field is required',
             'deskripsi.min' => 'Deskripsi field must contain at least 5 characters',
@@ -85,28 +87,12 @@ class projectController extends Controller
         ];
     
         if ($request->hasFile('gambar')) {
-            $request->validate([
-                'gambar' => 'required|image|mimes:jpg,jpeg,png|max:2048',
-            ],[
-            'gambar.required' => 'The image field cannot be empty',
-            'gambar.img' => 'The file uploaded must be an image',
-            'gambar.mimes' => 'Only allow images with extensions jpg, png, and jpeg',
-            'gambar.max' => 'The maximum file size allowed is 2 MB',
-            ]);
-    
-            $fileGambar = $request->file('gambar');
-            $getExtension = $fileGambar->extension();
-            $renameGambar = date('ymdhis') . '.' . $getExtension;
-            $fileGambar->move(public_path('img'), $renameGambar);
-    
+            $data['gambar'] = $request->file('gambar')->store('img', 'public');
             $getGambar = project::find($id);
     
-            // Hapus gambar lama jika ditemukan
-            if ($getGambar && file_exists(public_path('img') . '/' . $getGambar->gambar)) {
-                File::delete(public_path('img') . '/' . $getGambar->gambar);
+            if ($getGambar && Storage::disk('public')->exists($getGambar->gambar)) {
+                Storage::disk('public')->delete($getGambar->gambar); // Menghapus gambar dari direktori public/storage/img
             }
-    
-            $data['gambar'] = $renameGambar;
         }
     
         project::where('id', $id)->update($data);
@@ -121,12 +107,10 @@ class projectController extends Controller
         return redirect()->back()->with('error', 'Project not found.');
     }
 
-    // Hapus file gambar jika ada
     if ($data->gambar) {
-        File::delete(public_path('img') . '/' . $data->gambar);
+        Storage::delete($data->gambar);
     }
 
-    // Hapus data project
     $data->delete();
 
     return redirect('dashboard/project')->with('success', 'Project successfully deleted');
